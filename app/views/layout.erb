@@ -16,6 +16,23 @@
   <script src="/js/application.js"></script>
 
   <title></title>
+  <nav>
+    <%  unless request.path_info == '/'  %>
+      <a href="/">Home</a>
+
+    <% end %>
+    <% if logged_in? %>
+      <form method="POST" action="/sessions">
+        <input type="hidden" name="_method" value="DELETE">
+        <li><input type="submit" value="Log Out"></li>
+      </form>
+      
+    <% else %>
+      <li><a href="/sessions/new">Log In</a></li>
+      <li><a href="/users/new">Register</a></form></li>
+    <% end %>
+
+  </nav>
 </head>
 <body>
   <%= yield %>
