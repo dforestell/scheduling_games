@@ -1,0 +1,9 @@
+<h1>Sign Up!</h1>
+<%= erb :'_errors' %>
+<form action="/users" method="POST">
+	<input type="text" name="user[full_name]" placeholder="Full Name"><br>
+	<input type="text" name="user[team_name]" placeholder="Team Name"><br>
+ 	<input type="text" name="user[email]" placeholder="Email"><br>
+  	<input type="password" name="user[password]" placeholder="Password"><br>
+  	<input type="submit" value="Sign Up">
+</form>

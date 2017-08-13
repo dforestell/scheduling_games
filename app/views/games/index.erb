@@ -1,0 +1,10 @@
+<h1>Games</h1>
+
+	<% @games.each do |game| %>
+	<ul>
+		<li>
+			<p>Game on <%=game.date %> <%=game.time %> at  <%=game.field_address %> Host: <%=game.host.team_name %> Opponent: <% if game.traveler %>
+					<%= game.traveler.team_name %> <%end%> </p>
+		</li>
+	</ul>
+	<% end %>
