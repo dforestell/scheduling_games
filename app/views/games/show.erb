@@ -3,5 +3,7 @@
 Game hosted by: <%=@game.host.team_name%><br>
 Location: <%=@game.field_address %><br>
 Time: <%= @game.time %> <%=@game.date %><br>
-Opponent: <%= @game.traveler.team_name%>
+<% if @game.traveler %>
+  Opponent: <%= @game.traveler.team_name%>
+<% end %>
 </p>
