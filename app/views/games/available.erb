@@ -1,4 +1,5 @@
 <h1>Games</h1>
+<% if @games %>
 
   <% @games.each do |game| %>
   <ul>
@@ -14,4 +15,6 @@
     <input type="submit" value="I'll play you">
   </form>
   <% end %>
+  <% end %>
   <a href="/games/new">Host A Game</a>
+
