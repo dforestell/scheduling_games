@@ -1,0 +1,17 @@
+<h1>Games</h1>
+
+  <% @games.each do |game| %>
+  <ul>
+    <li>
+      <p>Game on <%=game.date %> <%=game.time %> <br>
+      Location: <%=game.field_address %> <br>
+      Host: <%=game.host.team_name %> <br>
+      Opponent: <% if game.traveler %>
+          <%= game.traveler.team_name %> <%end%> </p>
+    </li>
+  </ul>
+  <form action="/games/<%=game.id%>" method="POST">
+    <input type="submit" value="I'll play you">
+  </form>
+  <% end %>
+  <a href="/games/new">Host A Game</a>
