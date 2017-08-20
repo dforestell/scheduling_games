@@ -1,5 +1,5 @@
 <h1>Games</h1>
-
+<div class='container'>
 	<% @games.each do |game| %>
 	<ul>
 		<li>
@@ -11,4 +11,5 @@
 		</li>
 	</ul>
 	<% end %>
-	<a href="/games/new">Host A Game</a>
+	<a id="get-host-form" href="/games/new">Host A Game</a>
+</div>

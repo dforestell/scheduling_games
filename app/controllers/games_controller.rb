@@ -5,9 +5,18 @@ end
 
 get '/games/new' do
 	if logged_in?
+		if request.xhr?
+			erb :'games/_new', layout: false
+		else	
 		erb :'games/new'
+		end	
 	else
+		if request.xhr?
+			status 418
+			"You must be logged in to post a game!"
+		else
 		redirect '/'
+		end
 	end
 end
 
