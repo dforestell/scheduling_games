@@ -1,7 +1,8 @@
 <h1>Games</h1>
 <div class='container'>
-	<% @games.each do |game| %>
 	<ul>
+	<% @games.each do |game| %>
+	
 		<li>
 			<p>Game on <%=game.date %> <%=game.time %> <br>
 			Location: <%=game.field_address %> <br>
@@ -9,7 +10,7 @@
 			Opponent: <% if game.traveler %>
 					<%= game.traveler.team_name %> <%end%> </p>
 		</li>
-	</ul>
 	<% end %>
+	</ul>
 	<a id="get-host-form" href="/games/new">Host A Game</a>
 </div>

@@ -27,6 +27,20 @@ var getHostForm = function(){
 var postGame = function(){
 	$('.container').on('submit', '#post-game', function(event){
 		event.preventDefault();
-		alert('clicky')
-	})
+		var $postForm = $(this);
+		var url = $postForm.attr('action');
+		var method = $postForm.attr('method');
+		var data =  $postForm.serialize();
+
+  		var request = $.ajax({
+  			url: url,
+  			method: method,
+  			data: data
+  		})
+  		request.done(function(response){
+  			$('.container').children('ul').append(response)
+  			$postForm.remove();
+  			$('#get-host-form').show();
+  		})
+	});
 }

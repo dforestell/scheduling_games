@@ -51,9 +51,19 @@ post '/games' do
 	@game = Game.new(params[:game])
 	@game.host_id = current_user.id
 
-	if @game.save
-		redirect "/games/#{@game.id}"
-	else
-		redirect '/'
+	if request.xhr?
+		if @game.save
+			status 200
+			erb :'games/_post_game', layout: false, locals: {game: @game}
+		else
+			status 422
+			"you messed up bruh"
+		end
+	else	
+		if @game.save
+			redirect "/games/#{@game.id}"
+		else
+			redirect '/'
+		end
 	end
 end
