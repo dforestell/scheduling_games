@@ -1,4 +1,5 @@
 <h1>Available Games:</h1>
+<div class="container">
 <% if @games %>
 
   <% @games.each do |game| %>
@@ -25,5 +26,5 @@
   <%end%>
   <% end %>
 <% end %>
-  <a href="/games/new">Host A Game</a>
-
+  <a id="get-host-form" href="/games/new">Host A Game</a>
+</div>
