@@ -17,7 +17,7 @@
 <% @user.away_games.each do |game| %>
   <li>
       <p>Date: <%=game.date %> <%=game.time %> <br>
-      Location: <a href="https://maps.googleapis.com/maps/api/staticmap?center=<%=game.field_address %>&zoom=17&size=1200x800&maptype=roadmap&key=AIzaSyCVxsy7b-0fI-UEuy4Q9lGqXIuQXJJNwB0"><%=game.field_address %></a> <br>
+      Location: <a href="https://maps.googleapis.com/maps/api/staticmap?center=<%=game.field_address %>&zoom=17&size=1200x800&maptype=roadmap&key=<%=ENV['GOOGLE_MAPS_KEY']%>"><%=game.field_address %></a> <br>
       Opponent: <%= game.host.team_name %> </p>
     </li>
 <% end %>
