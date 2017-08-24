@@ -72,7 +72,7 @@ delete '/games/:id' do
 	@game = Game.find(params[:id])
 	if current_user.id == @game.host_id
 		@game.destroy
-		redirect '/games'
+		redirect '/games/available'
 	else
 		redirect '/'
 	end
