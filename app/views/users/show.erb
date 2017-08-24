@@ -31,6 +31,10 @@
       <p>Date: <%=game.date %> <%=game.time %> <br>
       Location: <%=game.field_address %> <br>
       Opponent: </p>
+    <form action="/games/<%= game.id %>" method="POST">
+      <input type="hidden" name="_method" value="DELETE">
+      <input type="submit" value="Delete Game">
+    </form>
     </li>
     <% end %>
 <% end %>
