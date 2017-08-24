@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_many :away_games, class_name: :Game, foreign_key: :traveler_id
 
 
-validates :email, presence: true
+validates :email, :full_name, :team_name, presence: true
 validates :email, uniqueness: true
 validate :validate_password
 

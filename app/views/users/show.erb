@@ -1,0 +1,40 @@
+<h1>Hi, <%= @user.full_name %></h1>
+<h3>Confirmed Home Games:</h3>
+<ul>
+<% @user.hosted_games.each do |game| %>
+  <% if game.traveler%>
+  <li>
+      <p>Date: <%=game.date %> <%=game.time %> <br>
+      Location: <%=game.field_address %> <br>
+      Opponent: <%= game.traveler.team_name %></p>
+    </li>
+    <% end %>
+<% end %>
+</ul>
+
+<h3>Away Games:</h3>
+<ul>
+<% @user.away_games.each do |game| %>
+  <li>
+      <p>Date: <%=game.date %> <%=game.time %> <br>
+      Location: <%=game.field_address %> <br>
+      Opponent: <%= game.host.team_name %> </p>
+    </li>
+<% end %>
+</ul>
+
+<h3>Pending Home Games:</h3>
+<ul>
+<% @user.hosted_games.each do |game| %>
+  <% if !game.traveler%>
+  <li>
+      <p>Date: <%=game.date %> <%=game.time %> <br>
+      Location: <%=game.field_address %> <br>
+      Opponent: </p>
+    </li>
+    <% end %>
+<% end %>
+</ul>
+
+
+

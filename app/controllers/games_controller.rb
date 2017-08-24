@@ -7,9 +7,9 @@ get '/games/new' do
 	if logged_in?
 		if request.xhr?
 			erb :'games/_new', layout: false
-		else	
+		else
 		erb :'games/new'
-		end	
+		end
 	else
 		if request.xhr?
 			status 418
@@ -59,11 +59,21 @@ post '/games' do
 			status 422
 			"you messed up bruh"
 		end
-	else	
+	else
 		if @game.save
 			redirect "/games/#{@game.id}"
 		else
 			redirect '/'
 		end
+	end
+end
+
+delete '/games/:id' do
+	@game = Game.find(params[:id])
+	if current_user.id == @game.host_id
+		@game.destroy
+		redirect '/games'
+	else
+		redirect '/'
 	end
 end
