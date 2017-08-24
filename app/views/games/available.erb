@@ -1,8 +1,9 @@
-<h1>Available Games</h1>
+<h1>Available Games:</h1>
+<div class="container">
 <% if @games %>
-
+<ul>
   <% @games.each do |game| %>
-  <ul>
+
     <li>
       <p>Game on <%=game.date %> <%=game.time %> <br>
       Location: <%=game.field_address %> <br>
@@ -10,11 +11,21 @@
       Opponent: <% if game.traveler %>
           <%= game.traveler.team_name %> <%end%> </p>
     </li>
-  </ul>
+
+  <% if logged_in? && current_user.id != game.host_id%>
   <form action="/games/<%=game.id%>" method="POST">
     <input type="submit" value="I'll play you">
   </form>
-  <% end %>
-  <% end %>
-  <a href="/games/new">Host A Game</a>
+  <%end%>
+  <% if logged_in? && current_user.id == game.host_id && game.traveler_id == nil %>
+    <form action="/games/<%= game.id %>" method="POST">
+      <input type="hidden" name="_method" value="DELETE">
+      <input type="submit" value="Delete Game">
+    </form>
 
+  <%end%>
+  <% end %>
+<% end %>
+</ul>
+  <a id="get-host-form" href="/games/new">Host A Game</a>
+</div>
