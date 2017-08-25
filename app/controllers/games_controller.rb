@@ -1,4 +1,5 @@
 get '/games' do
+	authenticate!
 	@games = Game.all
 	erb :'games/index'
 end
@@ -15,7 +16,7 @@ get '/games/new' do
 			status 418
 			"You must be logged in to post a game!"
 		else
-		redirect '/'
+		redirect '/sessions/new'
 		end
 	end
 end
@@ -25,7 +26,7 @@ get '/games/available' do
 		@games = Game.where(traveler_id: nil)
 		erb :'games/available'
 	else
-		redirect '/'
+		redirect '/sessions/new'
 	end
 
 end
@@ -39,15 +40,15 @@ post '/games/:id' do
 	@game = Game.find(params[:id])
 	p @game
 	if logged_in?
-
 		@game.update(traveler_id: current_user.id)
 			redirect "/games/#{@game.id}"
 	else
-		redirect '/'
+		redirect '/sessions/new'
 	end
 end
 
 post '/games' do
+	authenticate!
 	@game = Game.new(params[:game])
 	@game.host_id = current_user.id
 
@@ -57,7 +58,7 @@ post '/games' do
 			erb :'games/_post_game', layout: false, locals: {game: @game}
 		else
 			status 422
-			"you messed up bruh"
+			"you messed up"
 		end
 	else
 		if @game.save
@@ -74,6 +75,6 @@ delete '/games/:id' do
 		@game.destroy
 		redirect '/games/available'
 	else
-		redirect '/'
+		redirect '/games/available'
 	end
 end

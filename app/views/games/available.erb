@@ -1,31 +1,25 @@
 <h1>Available Games:</h1>
 <div class="container">
-<% if @games %>
-<ul>
-  <% @games.each do |game| %>
+  <% if @games %>
+  <div id="games-container">
+    <% @games.each do |game| %>
 
-    <li>
+    <span class="single-game">
       <p>Game on <%=game.date %> <%=game.time %> <br>
-      Location: <a href="https://maps.googleapis.com/maps/api/staticmap?center=<%=game.field_address %>&zoom=17&size=1200x800&maptype=roadmap&key=<%=ENV['GOOGLE_MAPS_KEY']%>" target="_blank"><%=game.field_address %></a> <br>
-      Host: <%=game.host.team_name %> <br>
-      Opponent: <% if game.traveler %>
-          <%= game.traveler.team_name %> <%end%> </p>
-    </li>
-
-  <% if logged_in? && current_user.id != game.host_id%>
-  <form action="/games/<%=game.id%>" method="POST">
-    <input type="submit" value="I'll play you">
-  </form>
-  <%end%>
-  <% if logged_in? && current_user.id == game.host_id && game.traveler_id == nil %>
-    <form action="/games/<%= game.id %>" method="POST">
-      <input type="hidden" name="_method" value="DELETE">
-      <input type="submit" value="Delete Game">
-    </form>
-
-  <%end%>
-  <% end %>
-<% end %>
-</ul>
-  <a id="get-host-form" href="/games/new">Host A Game</a>
-</div>
+        Location: <a href="https://maps.googleapis.com/maps/api/staticmap?center=<%=game.field_address %>&zoom=17&size=1200x800&maptype=roadmap&key=<%=ENV['GOOGLE_MAPS_KEY']%>" target="_blank"><%=game.field_address %></a> <br>
+        Host: <%=game.host.team_name %> <br>
+        Opponent: <% if game.traveler %>
+        <%= game.traveler.team_name %> <%end%> </p>
+        <% if logged_in? && current_user.id != game.host_id%>
+        <form action="/games/<%=game.id%>" method="POST">
+          <input type="submit" value="I'll play you">
+        </form>
+        <%end%>
+        <%= erb :'games/_delete_button', locals: {game: game} %>
+      </span>
+      <% end %>
+      <% end %>
+    </div>
+    <br>
+    <a id="get-host-form" href="/games/new">Host A Game</a>
+  </div>

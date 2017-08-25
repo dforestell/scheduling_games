@@ -1,0 +1,7 @@
+  <% if logged_in? && current_user.id == game.host_id && game.traveler_id == nil %>
+  <form action="/games/<%= game.id %>" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete Game">
+  </form>
+
+  <%end%>

@@ -1,14 +1,9 @@
-<li>
-<p>Game on <%=game.date %> <%=game.time %> <br>
-	Location: <%=game.field_address %> <br>
-	Host: <%=game.host.team_name %> <br>
-	Opponent:
-	 </p>
-</li>
-  <% if logged_in? && current_user.id == game.host_id && game.traveler_id == nil %>
-    <form action="/games/<%= game.id %>" method="POST">
-      <input type="hidden" name="_method" value="DELETE">
-      <input type="submit" value="Delete Game">
-    </form>
+<span class="single-game">
+  <p>Game on <%=game.date %> <%=game.time %> <br>
+    Location: <a href="https://maps.googleapis.com/maps/api/staticmap?center=<%=game.field_address %>&zoom=17&size=1200x800&maptype=roadmap&key=<%=ENV['GOOGLE_MAPS_KEY']%>" target="_blank"><%=game.field_address %></a> <br>
+    Host: <%=game.host.team_name %> <br>
+    Opponent: <% if game.traveler %>
+    <%= game.traveler.team_name %> <%end%> </p>
 
-  <%end%>
+    <%= erb :'games/_delete_button', locals: {game: game} %>
+  </span>
