@@ -1,9 +1,12 @@
 <h1>Game Details</h1>
+<span class="single-game">
 <p>
 Game hosted by: <%=@game.host.team_name%><br>
-Location: <%=@game.field_address %><br>
-Time: <%= @game.time %> <%=@game.date %><br>
+Location: Location: <a href="https://maps.googleapis.com/maps/api/staticmap?center=<%=@game.field_address %>&zoom=17&size=1200x800&maptype=roadmap&key=<%=ENV['GOOGLE_MAPS_KEY']%>" target="_app"><%=@game.field_address %></a> <br>
+Date: <%=@game.format_date %><br>
 <% if @game.traveler %>
   Opponent: <%= @game.traveler.team_name%>
 <% end %>
+<%= erb :'games/_delete_button', locals: {game: @game} %>
 </p>
+</span?

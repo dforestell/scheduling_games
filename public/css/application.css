@@ -1,5 +1,6 @@
 body{
 	margin: 3%;
+  background-color: #ffcc99;
 }
 
 .single-game{
@@ -8,4 +9,23 @@ body{
   width: 30%;
   display: inline-block;
   border: 1px solid black;
+}
+
+
+#logout{
+     background:none;
+     color:#0000ff;
+     border:none;
+     padding:0;
+     font: inherit;
+     border-bottom:1px solid #0000ff;
+     cursor: pointer;
+}
+
+a:link, a:visited, a:hover, a:active{
+ color:#0000ff;
+}
+
+#index-h1{
+  text-align: center;
 }
