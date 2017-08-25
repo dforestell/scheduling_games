@@ -1,40 +1,38 @@
 <h1>Hi, <%= @user.full_name %></h1>
 <h3>Confirmed Home Games:</h3>
-<ul>
 <% @user.hosted_games.each do |game| %>
-  <% if game.traveler%>
-  <li>
-      <p>Date: <%=game.date %> <%=game.time %> <br>
-      Location: <%=game.field_address %> <br>
-      Opponent: <%= game.traveler.team_name %></p>
-    </li>
-    <% end %>
-<% end %>
+<% if game.traveler%>
+<span class="single-game">
+  <p>Date: <%=game.date %> <%=game.time %> <br>
+    Location: <%=game.field_address %> <br>
+    Opponent: <%= game.traveler.team_name %></p>
+  </span>
+  <% end %>
+  <% end %>
 </ul>
 
 <h3>Away Games:</h3>
-<ul>
 <% @user.away_games.each do |game| %>
-  <li>
-      <p>Date: <%=game.date %> <%=game.time %> <br>
-      Location: <a href="https://maps.googleapis.com/maps/api/staticmap?center=<%=game.field_address %>&zoom=17&size=1200x800&maptype=roadmap&key=<%=ENV['GOOGLE_MAPS_KEY']%>" target="_app"><%=game.field_address %></a>  <br>
-      Opponent: <%= game.host.team_name %> </p>
-    </li>
-<% end %>
-</ul>
+<span class="single-game">
+  <p>Date: <%=game.date %> <%=game.time %> <br>
+    Location: <a href="https://maps.googleapis.com/maps/api/staticmap?center=<%=game.field_address %>&zoom=17&size=1200x800&maptype=roadmap&key=<%=ENV['GOOGLE_MAPS_KEY']%>" target="_app"><%=game.field_address %></a>  <br>
+    Opponent: <%= game.host.team_name %> </p>
+  </span>
+  <% end %>
 
-<h3>Pending Home Games:</h3>
-<ul>
-<% @user.hosted_games.each do |game| %>
+
+  <h3>Pending Home Games:</h3>
+  <% @user.hosted_games.each do |game| %>
   <% if !game.traveler%>
-  <li>
-      <p>Date: <%=game.date %> <%=game.time %> <br>
+  <span class="single-game">
+    <p>Date: <%=game.date %> <%=game.time %> <br>
       Location: <%=game.field_address %> <br>
       Opponent: </p>
-<%= erb :'games/_delete_button', locals: {game: game} %>
+      <%= erb :'games/_delete_button', locals: {game: game} %>
+      <% end %>
+    </span>
     <% end %>
-<% end %>
-</ul>
+
 
 
 
