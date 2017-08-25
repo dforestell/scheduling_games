@@ -1,4 +1,4 @@
-<h1>Hi, <%= @user.full_name %></h1>
+<h1>Upcoming Games for <%= @user.team_name %></h1>
 <h3>Confirmed Home Games:</h3>
 <% @user.hosted_games.each do |game| %>
 <% if game.traveler%>

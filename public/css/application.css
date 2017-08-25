@@ -3,6 +3,7 @@ body{
 }
 
 .single-game{
+  background-color: lightgrey;
   text-align: center;
   width: 30%;
   display: inline-block;
