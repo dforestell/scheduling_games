@@ -18,19 +18,21 @@
   <title></title>
   <nav>
     <%  unless request.path_info == '/'  %>
-      <a href="/">Home</a>
+      <a href="/">Home</a> &nbsp;
 
     <% end %>
     <% if logged_in? %>
+        <a href="/users/<%= current_user.id%>">Hi, <%=current_user.full_name%></a> &nbsp;
+          <a href="/games/available">Available Games</a> &nbsp;
+  <a href="/games/new">Host A Game</a> &nbsp;
       <form method="POST" action="/sessions">
         <input type="hidden" name="_method" value="DELETE">
-        <li><input type="submit" value="Log Out"></li>
-        <li><a href="/users/<%= current_user.id%>">Hi, <%=current_user.full_name%></a></li>
+        <input id="logout" type="submit" value="Log Out">
       </form>
 
     <% else %>
-      <li><a href="/sessions/new">Log In</a></li>
-      <li><a href="/users/new">Register</a></form></li>
+      <a href="/sessions/new">Log In</a> &nbsp;
+      <a href="/users/new">Register</a></form>
     <% end %>
 
   </nav>
