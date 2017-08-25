@@ -5,7 +5,7 @@ $(document).ready(function() {
 
 var getHostForm = function(){
 	$('#get-host-form').on('click', function(event){
-		event.preventDefault();	
+		event.preventDefault();
 		var $hostLink = $(this);
 		var url = $hostLink.attr('href')
 
@@ -38,7 +38,8 @@ var postGame = function(){
   			data: data
   		})
   		request.done(function(response){
-  			$('.container').children('ul').append(response)
+        console.log(response)
+  			$('#games-container').append(response)
   			$postForm.remove();
   			$('#get-host-form').show();
   		})
