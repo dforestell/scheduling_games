@@ -1,5 +1,5 @@
 <span class="single-game">
-  <p>Game on <%=game.date %> <%=game.time %> <br>
+  <p>Date: <%=game.format_date %><br>
     Location: <a href="https://maps.googleapis.com/maps/api/staticmap?center=<%=game.field_address %>&zoom=17&size=1200x800&maptype=roadmap&key=<%=ENV['GOOGLE_MAPS_KEY']%>" target="_blank"><%=game.field_address %></a> <br>
     Host: <%=game.host.team_name %> <br>
     Opponent: <% if game.traveler %>
