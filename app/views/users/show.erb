@@ -3,7 +3,7 @@
 <% @user.hosted_games.each do |game| %>
 <% if game.traveler%>
 <span class="single-game">
-  <p>Date: <%=game.date %> <%=game.time %> <br>
+  <p>Date: <%=game.format_date %> <br>
     Location: <%=game.field_address %> <br>
     Opponent: <%= game.traveler.team_name %></p>
   </span>
@@ -14,7 +14,7 @@
 <h3>Away Games:</h3>
 <% @user.away_games.each do |game| %>
 <span class="single-game">
-  <p>Date: <%=game.date %> <%=game.time %> <br>
+  <p>Date: <%=game.format_date %> <br>
     Location: <a href="https://maps.googleapis.com/maps/api/staticmap?center=<%=game.field_address %>&zoom=17&size=1200x800&maptype=roadmap&key=<%=ENV['GOOGLE_MAPS_KEY']%>" target="_app"><%=game.field_address %></a>  <br>
     Opponent: <%= game.host.team_name %> </p>
   </span>
@@ -25,7 +25,7 @@
   <% @user.hosted_games.each do |game| %>
   <% if !game.traveler%>
   <span class="single-game">
-    <p>Date: <%=game.date %> <%=game.time %> <br>
+    <p>Date: <%=game.format_date %> <br>
       Location: <%=game.field_address %> <br>
       Opponent: </p>
       <%= erb :'games/_delete_button', locals: {game: game} %>
